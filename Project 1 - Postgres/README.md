@@ -24,8 +24,19 @@ The records in the log data (events) associated with song plays is stored in a t
 The dimension tables supports filtering and grouping and the fact table supports summarization. This makes it easier to do song play analysis. 
   
  <img src="Database.png"  >
+
+## ETL pipeline
+
+Udacity provided a subset of the real data from the <a href=http://millionsongdataset.com/> Million Song Dataset</a>  for this project.
+
+ETL was performed on the first dataset song_data, to get data for the ‘songs’ and ‘artists’ dimensional tables.
+The second dataset, log_data, was used to create the ‘time’ and ‘users’ dimensional tables, and the ‘songplays’ fact table. In order to get the timestamp, hour, day, week of year, month, year, and weekday for the time table, Python panda was used .
+In order to get the data for the ‘songplays’ fact table, the song ID and artist ID was queried using the songs and artists tables to find matches based on song title, artist name, and song duration time in the log table. 
+
+I was not able to find a match for any of the artists and songs for the records in ‘songplays’ fact table. I think this was because we got only a subset of the data for testing.
+
  
-## Set up Instructions for the ETL pipeline
+## Instructions for the ETL pipeline
  
 To run this project, run the following commands -:
 python3 create_tables.py - This will create the tables in postgre
