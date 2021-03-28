@@ -9,20 +9,23 @@ A star schema was used to optimize for queries on song play analysis. This inclu
 
  
 Dimension Tables
+
 The entities like users , songs, artists and time are stored in the following tables
-    users - users in the app ( primary key is user_id)
-    songs - songs in music database (primary key is song_id)
-    artists - artists in music database (primary key is artist_id)
-    time - timestamps of records in songplays broken down into specific units (primary key is start_time)
+
+* users - Used to store users in the app ( primary key is user_id)
+* songs - Used to store songs in music database (primary key is song_id)
+* artists - Used to store artists in music database (primary key is artist_id)
+* time - Used to store timestamps of records in songplays broken down into specific units (primary key is start_time)
     
 Fact Table 
+
 The records in the log data (events) associated with song plays is stored in a table called songplays. The primary key is songplay_id and this is an auto generated serial number. The keys like user_id,  song_id,artist_id,start_time references the primary keys in the dimension tables.
 
 The dimension tables supports filtering and grouping and the fact table supports summarization. This makes it easier to do song play analysis. 
   
  <img src="Database.png"  >
  
-## Set up Instructions 
+## Set up Instructions for the ETL pipeline
  
 To run this project, run the following commands -:
 python3 create_tables.py - This will create the tables in postgre
