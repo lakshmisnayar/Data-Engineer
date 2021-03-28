@@ -11,18 +11,18 @@ time_table_drop = "DROP TABLE time"
 songplay_table_create = ("""CREATE TABLE songplays (
                                            songplay_id  SERIAL, 
                                            start_time timestamp  REFERENCES time, 
-                                           user_id text REFERENCES users, 
-                                           level text,  
+                                           user_id INTEGER REFERENCES users, 
+                                           level text NOT NULL,  
                                            song_id text REFERENCES songs,
                                            artist_id text REFERENCES artists,
-                                           session_id integer, 
+                                           session_id integer NOT NULL, 
                                            location text, 
                                            user_agent text, 
                                            PRIMARY KEY(songplay_id)
                                            )""")
 
 user_table_create = ("""CREATE TABLE users (  
-                                          user_id text NOT NULL, 
+                                          user_id INTEGER, 
                                           first_name text NOT NULL,
                                           last_name text NOT NULL, 
                                           gender text NOT NULL, 
@@ -31,7 +31,7 @@ user_table_create = ("""CREATE TABLE users (
                                           )""")
 
 song_table_create = ("""CREATE TABLE songs ( 
-                                         song_id  text NOT NULL,
+                                         song_id  text,
                                          title  text NOT NULL,
                                          artist_id text NOT NULL,
                                          year  integer NOT NULL,
@@ -40,7 +40,7 @@ song_table_create = ("""CREATE TABLE songs (
                                          )""")
 
 artist_table_create = ("""CREATE TABLE artists ( 
-                                        artist_id text NOT NULL, 
+                                        artist_id text, 
                                         name  text NOT NULL,
                                         location  text,
                                         latitude   float,
@@ -49,7 +49,7 @@ artist_table_create = ("""CREATE TABLE artists (
                                             )""")
 
 time_table_create = ("""CREATE TABLE time ( 
-                                        start_time timestamp  NOT NULL,
+                                        start_time timestamp,
                                         hour integer  NOT NULL,
                                         day integer  NOT NULL,
                                         week integer  NOT NULL,

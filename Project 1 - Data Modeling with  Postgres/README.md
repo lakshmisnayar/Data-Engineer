@@ -8,7 +8,7 @@ An ETL pipeline was created that extracts data from the JSON files in two local 
 A star schema was used to optimize for queries on song play analysis. This includes the following tables.
 
  
-Dimension Tables
+### Dimension Tables
 
 The entities like users , songs, artists and time are stored in the following tables
 
@@ -17,7 +17,7 @@ The entities like users , songs, artists and time are stored in the following ta
 * artists - Used to store artists in music database (primary key is artist_id)
 * time - Used to store timestamps of records in songplays broken down into specific units (primary key is start_time)
     
-Fact Table 
+### Fact Table 
 
 The records in the log data (events) associated with song plays is stored in a table called songplays. The primary key is songplay_id and this is an auto generated serial number. The keys like user_id,  song_id,artist_id,start_time references the primary keys in the dimension tables.
 
@@ -30,7 +30,7 @@ The dimension tables supports filtering and grouping and the fact table supports
 Udacity provided a subset of the real data from the <a href=http://millionsongdataset.com/> Million Song Dataset</a>  for this project.
 
 ETL was performed on the first dataset song_data, to get data for the ‘songs’ and ‘artists’ dimensional tables.
-The second dataset, log_data, was used to create the ‘time’ and ‘users’ dimensional tables, and the ‘songplays’ fact table. In order to get the timestamp, hour, day, week of year, month, year, and weekday for the time table, Python panda was used .
+The second dataset, log_data, was used to create the ‘time’ and ‘users’ dimensional tables, and the ‘songplays’ fact table. In order to get the timestamp, hour, day, week of year, month, year, and weekday for the time table, Python panda was used.
 In order to get the data for the ‘songplays’ fact table, the song ID and artist ID was queried using the songs and artists tables to find matches based on song title, artist name, and song duration time in the log table. 
 
  
