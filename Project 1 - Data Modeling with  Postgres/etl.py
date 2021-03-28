@@ -6,6 +6,9 @@ from sql_queries import *
 
 
 def process_song_file(cur, filepath):
+    """
+    - Reads the JSON song file and loads the data in songs and artists table.
+    """ 
     # open song file
     df =pd.read_json(filepath, lines=True)  
     artist_id, artist_latitude, artist_location, artist_longitude, artist_name, duration, num_songs, song_id, title, year = df.values[0]
@@ -19,6 +22,13 @@ def process_song_file(cur, filepath):
 
 
 def process_log_file(cur, filepath):
+    """
+    - Reads the JSON log file and filters the data by NextSong 
+    - Extract user information and load the user table
+    - Extract datetime information from one of the fields in the JSON log file called ts and load the time table
+    - Get the songid and artistid by querying the songs and artists tables to find matches based on the following data in the log file -: song title, artist name, and song duration time 
+    - Load the songplays table using the information from log file along with the corresonding matching songid and artistid. 
+    """     
     # open log file
     df = pd.read_json(filepath, lines=True)  
 
@@ -57,8 +67,8 @@ def process_log_file(cur, filepath):
             songid, artistid = None, None
 
         # insert songplay record
-        songplay_data = [row.ts,row.userId, row.level, songid, artistid, row.sessionId, row.location, row.userAgent] 
-        cur.execute(songplay_table_insert, songplay_data)
+        songplay_data = [row.ts,row.userId, row.level, songid, artistid, row.sessionId, row.location, row.userAgent]        
+        cur.execute(songplay_table_insert, songplay_data)  
 
 
 def process_data(cur, conn, filepath, func):
@@ -84,17 +94,13 @@ import psycopg2
 import pandas as pd
 from sql_queries import *
 
-def get_files(filepath):
-    all_files = []
-    for root, dirs, files in os.walk(filepath):
-        files = glob.glob(os.path.join(root,'*.json'))
-        for f in files :
-            all_files.append(os.path.abspath(f))
-    
-    return all_files
 
 def main(): 
-
+    """
+ - Connects to the sparkify database and connects cursor.
+ - Loads the data in the files from the 2 folders data/song_data and data/log_data into the tables in the sparkify database
+ - Closes connection.
+    """ 
     conn = psycopg2.connect("host=127.0.0.1 dbname=sparkifydb user=student password=student")
     cur = conn.cursor()
 
