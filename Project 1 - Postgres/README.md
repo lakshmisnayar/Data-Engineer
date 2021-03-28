@@ -33,8 +33,6 @@ ETL was performed on the first dataset song_data, to get data for the ‘songs�
 The second dataset, log_data, was used to create the ‘time’ and ‘users’ dimensional tables, and the ‘songplays’ fact table. In order to get the timestamp, hour, day, week of year, month, year, and weekday for the time table, Python panda was used .
 In order to get the data for the ‘songplays’ fact table, the song ID and artist ID was queried using the songs and artists tables to find matches based on song title, artist name, and song duration time in the log table. 
 
-I was not able to find a match for any of the artists and songs for the records in ‘songplays’ fact table. I think this was because we got only a subset of the data for testing.
-
  
 ## Instructions for the ETL pipeline
  
