@@ -14,6 +14,8 @@ The entities like users , songs, artists and time are stored in the following ta
     time - timestamps of records in songplays broken down into specific units 
    
 The dimension tables supports filtering and grouping and the fact table supports summarization. This makes it easier to do song play analysis. 
+  
+ <img src="Database.png"  >
  
 To run this project, run the following commands in the command prompt.
 python3 create_tables.py
